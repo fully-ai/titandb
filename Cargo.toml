@@ -1,0 +1,24 @@
+[package]
+name = "titandb"
+version = "0.1.0-alpha.1"
+edition = "2024"
+license = "Apache-2.0"
+description = "Distributed SQL database engine in Rust with 4KB slotted pages, Clock buffer pool, WAL recovery, B+Tree indexes, MVCC, Raft consensus, and wire/HTTP clients"
+repository = "https://github.com/fully-ai/titandb"
+
+[lib]
+name = "titandb"
+path = "src/lib.rs"
+
+[[bin]]
+name = "titandb"
+path = "src/bin/titandb.rs"
+
+[[bin]]
+name = "titan-cli"
+path = "src/bin/titan_cli.rs"
+
+[dependencies]
+crc32fast = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

@@ -1,0 +1,11 @@
+# Target artifacts
+target/
+*.tdb
+*.wal
+*.db
+data/
+backups/
+.env
+*.pem
+*.key
+.DS_Store

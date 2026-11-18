@@ -1,0 +1,11 @@
+name: Bug Report
+description: Report a TitanDB bug
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: desc
+    attributes:
+      label: Description & SQL / Cluster Reproduction
+    validations:
+      required: true

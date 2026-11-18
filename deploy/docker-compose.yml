@@ -1,0 +1,15 @@
+services:
+  titandb:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "127.0.0.1:7440:7440"
+      - "127.0.0.1:7441:7441"
+    volumes:
+      - titandb_data:/data
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  titandb_data:
