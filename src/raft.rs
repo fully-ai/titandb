@@ -230,6 +230,7 @@ pub struct RaftNode {
     pub peers: HashMap<u64, String>,
     pub state: Arc<Mutex<RaftState>>,
     pub engine: Arc<TitanEngine>,
+    apply_lock: Mutex<()>,
     shutdown: Arc<Mutex<bool>>,
 }
 
@@ -251,6 +252,7 @@ impl RaftNode {
             peers,
             state: Arc::new(Mutex::new(RaftState::new(id, election_timeout))),
             engine,
+            apply_lock: Mutex::new(()),
             shutdown: Arc::new(Mutex::new(false)),
         });
 
@@ -497,6 +499,7 @@ impl RaftNode {
     }
 
     fn apply_committed(&self) {
+        let _guard = self.apply_lock.lock().unwrap();
         loop {
             let next_cmd = {
                 let st = self.state.lock().unwrap();
